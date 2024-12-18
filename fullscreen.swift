@@ -3,12 +3,9 @@ import Foundation
 import CoreGraphics
 
 /*
-About:
-  Keep mouse out of upper taskbar region so Windows App doesn't go drop of out of fullscreen mode.
-  This could be customized to keep the mouse out of any area.
-Usage: 
-  swift fullscreen.swift[
+Keep mouse out of upper taskbar region in Windows App so it doesn't drop of out of fullscreen mode.
 */
+
 class AppDelegate: NSObject, NSApplicationDelegate {
   override init() {
     signal(SIGINT, { _ in
@@ -19,22 +16,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved]) { event in
-      let mouseLocation = event.locationInWindow
-       let screenFrame = NSScreen.main?.frame ?? .zero
-       let screenHeight = screenFrame.height
-       let loc = CGPoint(x: mouseLocation.x + screenFrame.origin.x, y: screenHeight - mouseLocation.y - screenFrame.origin.y)
-       let x = round(loc.x)
-       let y = round(loc.y)
-       if(y < 40) { 
-         self.moveMouseTo(x: x, y: 40)
-       } 
-       print("\(x),\(y)")
+       let workspace = NSWorkspace.shared
+       let activeApp = workspace.frontmostApplication
+       if(activeApp?.localizedName == "Windows App") {
+         let mouseLocation = event.locationInWindow
+         let screenFrame = NSScreen.main?.frame ?? .zero
+         let screenHeight = screenFrame.height
+         let loc = CGPoint(x: mouseLocation.x + screenFrame.origin.x, y: screenHeight - mouseLocation.y - screenFrame.origin.y)
+         let x = round(loc.x)
+         let y = round(loc.y)
+         if(y < 50) { 
+           print("Windows App \(x),\(y)")
+           let event = CGEvent(mouseEventSource: nil, 
+				mouseType: CGEventType.mouseMoved, 
+				mouseCursorPosition: CGPoint(x: x, y: 50), // push mouse back down 
+				mouseButton: .left)
+           event?.post(tap: CGEventTapLocation.cghidEventTap)
+         } 
+       }
     }
-  }
-
-  func moveMouseTo(x: CGFloat, y: CGFloat) {
-    let event = CGEvent(mouseEventSource: nil, mouseType: CGEventType.mouseMoved, mouseCursorPosition: CGPoint(x: x, y: y), mouseButton: .left)
-    event?.post(tap: CGEventTapLocation.cghidEventTap)
   }
 }
 
