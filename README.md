@@ -15,4 +15,6 @@ Usage:
 > swift fullscreen.swift
 ```
 
+Prints mouse coodinates and prevents you from entering the upper bar.
+
 <img width="739" alt="image" src="https://github.com/user-attachments/assets/34c65878-1b9f-4cfc-93dd-ebe1e52556c7" />
