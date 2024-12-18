@@ -17,4 +17,8 @@ Usage:
 
 Prints mouse coodinates and prevents you from entering the upper bar.
 
-<img width="739" alt="image" src="https://github.com/user-attachments/assets/34c65878-1b9f-4cfc-93dd-ebe1e52556c7" />
+<img width="770" alt="image" src="https://github.com/user-attachments/assets/7f739930-347c-4f66-9083-c397729a8ef0" />
+
+You might have to add Terminal to your MacOS accessibilty settings (I'm using Alacrity but it's the same)
+
+<img width="522" alt="image" src="https://github.com/user-attachments/assets/83a06f8e-ea23-45c3-bda3-153650cf9008" />
