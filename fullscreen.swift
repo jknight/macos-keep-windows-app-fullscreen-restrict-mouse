@@ -13,7 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     exit(0)
     })
   }
-
+ 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved]) { event in
        let workspace = NSWorkspace.shared
@@ -25,11 +25,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          let loc = CGPoint(x: mouseLocation.x + screenFrame.origin.x, y: screenHeight - mouseLocation.y - screenFrame.origin.y)
          let x = round(loc.x)
          let y = round(loc.y)
-         if(y < 50) { 
+         if(y < 60) { 
            print("Windows App \(x),\(y)")
            let event = CGEvent(mouseEventSource: nil, 
 				mouseType: CGEventType.mouseMoved, 
-				mouseCursorPosition: CGPoint(x: x, y: 50), // push mouse back down 
+				mouseCursorPosition: CGPoint(x: x, y: 65), // push mouse back down 
 				mouseButton: .left)
            event?.post(tap: CGEventTapLocation.cghidEventTap)
          } 
