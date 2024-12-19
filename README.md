@@ -1,4 +1,4 @@
-# Prevent Mac Mouse from entering Windows App menubar when in Fullscreen mode
+# Prevent Mac Mouse from triggering Windows App menubar when in Fullscreen mode
 
 When using Windows App for remote desktop in fullscreen mode, whenever the mouse touches the top of the screen Windows App drops out of fullscreen mode.
 
