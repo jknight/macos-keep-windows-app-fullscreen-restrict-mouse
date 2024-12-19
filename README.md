@@ -20,6 +20,9 @@ Prints mouse coodinates and prevents you from entering the upper bar.
 
 <img width="770" alt="image" src="https://github.com/user-attachments/assets/7f739930-347c-4f66-9083-c397729a8ef0" />
 
+I'm not sure if the 60px restiction with the 65px bump on the top will work for all resolutions but it works well on a Macbook 15". 
+Tweak the numbers as desired for your setup.
+
 You might have to add Terminal to your MacOS accessibilty settings (I'm using Alacrity but it's the same)
 
 <img width="522" alt="image" src="https://github.com/user-attachments/assets/83a06f8e-ea23-45c3-bda3-153650cf9008" />
