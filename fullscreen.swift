@@ -7,6 +7,10 @@ Keep mouse out of upper taskbar region in Windows App so it doesn't drop of out 
 */
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+
+  // Don't let the mouse dip below minY. Adjust as needed for your display / resolution
+  let minY = 60.0
+
   override init() {
     signal(SIGINT, { _ in
     print("Received SIGINT, exiting gracefully...")
@@ -25,11 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          let loc = CGPoint(x: mouseLocation.x + screenFrame.origin.x, y: screenHeight - mouseLocation.y - screenFrame.origin.y)
          let x = round(loc.x)
          let y = round(loc.y)
-         if(y < 60) { 
+         if(y < self.minY) { 
            print("Windows App \(x),\(y)")
            let event = CGEvent(mouseEventSource: nil, 
 				mouseType: CGEventType.mouseMoved, 
-				mouseCursorPosition: CGPoint(x: x, y: 65), // push mouse back down 
+				mouseCursorPosition: CGPoint(x: x, y: self.minY + 5), // push mouse back down with a little extra bump
 				mouseButton: .left)
            event?.post(tap: CGEventTapLocation.cghidEventTap)
          } 
